@@ -1,10 +1,10 @@
-import Image from "next/image";
+import HeroSlider from "./HeroSlider";
 import { ArrowRightIcon, WhatsappIcon } from "./icons";
 import { contact, heroStats, tickerDestinations } from "@/lib/site-data";
 
 export default function Hero() {
-  const waHref = `https://wa.me/${contact.phoneWhatsapp}?text=${encodeURIComponent(
-    "Namaste, I'd like to enquire about booking a bus from Karad."
+  const waHref = `https://wa.me/${contact.phonePrimaryWhatsapp}?text=${encodeURIComponent(
+    "Namaste, I'd like to enquire about booking a car from Karad."
   )}`;
   const loopedDestinations = [...tickerDestinations, ...tickerDestinations];
 
@@ -13,18 +13,19 @@ export default function Hero() {
       <div className="mx-auto grid max-w-6xl gap-12 px-6 pt-14 pb-14 md:grid-cols-[1.1fr_0.9fr] md:items-center md:pt-20 md:pb-16">
         <div>
           <p className="font-mono text-xs font-bold uppercase tracking-[0.14em] text-accent-strong">
-            AC &amp; Non-AC Coaches · Karad, Dist. Satara
+            Sedans, SUVs &amp; Tempo Travellers · Karad, Dist. Satara
           </p>
           <h1 className="mt-4 text-4xl font-bold leading-[1.08] text-primary-strong md:text-6xl">
-            From the Sangam at Karad
+            From Karad
             <br />
             to <span className="text-accent">every corner</span> of India.
           </h1>
           <p className="mt-5 max-w-[52ch] text-lg text-ink-soft">
-            Sangam Travels runs four coaches out of Karad Bus Stand — two AC,
-            two Non-AC — on the NH 48 corridor between Pune and Bengaluru.
-            Book a seat on a scheduled route, or charter the whole coach for
-            a yatra, a wedding, or a college trip anywhere in the country.
+            Krushnaraj Travels runs a mixed fleet out of Karad — Innova
+            Crysta, Fortuner, Kia Carens, Ertiga and Swift Dzire for cars and
+            SUVs, plus Force Urbania and Tempo Traveller vans for larger
+            groups. Book a car for the day, an airport transfer, or an
+            outstation trip anywhere in Maharashtra and India.
           </p>
 
           <div className="mt-8 flex flex-wrap gap-3">
@@ -59,25 +60,7 @@ export default function Hero() {
           </dl>
         </div>
 
-        <div>
-          <div className="overflow-hidden rounded-2xl border border-line shadow-[0_25px_50px_-30px_rgba(19,32,37,0.45)]">
-            <Image
-              src="/images/ac-volvo-highway.jpg"
-              alt="AC Volvo multi-axle coach, the comfort class Sangam Travels' AC coaches run to"
-              width={1357}
-              height={957}
-              priority
-              className="h-auto w-full object-cover"
-            />
-          </div>
-          <p className="mt-2 text-right text-xs text-ink-soft">
-            Reference photo of an AC Volvo-class coach — see the{" "}
-            <a href="#gallery" className="underline decoration-line underline-offset-2 hover:text-primary-strong">
-              gallery note
-            </a>
-            .
-          </p>
-        </div>
+        <HeroSlider />
       </div>
 
       <div className="border-y border-line bg-surface-2 py-2.5">

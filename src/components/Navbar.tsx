@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { BusIcon, PhoneIcon } from "./icons";
-import { contact } from "@/lib/site-data";
+import { brand, contact } from "@/lib/site-data";
 
 const links = [
   { href: "#fleet", label: "Fleet" },
@@ -20,7 +20,7 @@ export default function Navbar() {
           </span>
           <span className="min-w-0 leading-tight">
             <span className="block truncate font-display text-base font-bold text-primary-strong sm:text-lg">
-              Sangam Travels
+              {brand.name}
             </span>
             <span className="block truncate text-[0.62rem] uppercase tracking-wider text-ink-soft sm:text-[0.68rem]">
               Karad · Maharashtra
@@ -41,7 +41,7 @@ export default function Navbar() {
         </nav>
 
         <a
-          href={`tel:+${contact.phoneWhatsapp}`}
+          href={`tel:+${contact.phonePrimaryWhatsapp}`}
           className="inline-flex shrink-0 items-center gap-1.5 whitespace-nowrap rounded-full bg-accent px-3 py-2 text-xs font-semibold text-white shadow-[0_14px_30px_-16px_rgba(233,97,28,0.7)] transition-transform hover:-translate-y-0.5 hover:bg-accent-strong sm:gap-2 sm:px-4 sm:py-2.5 sm:text-sm"
         >
           <PhoneIcon className="h-3.5 w-3.5 sm:h-4 sm:w-4" />

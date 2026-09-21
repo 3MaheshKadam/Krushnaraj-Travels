@@ -1,5 +1,4 @@
 import {
-  BackpackIcon,
   BriefcaseIcon,
   StarIcon,
   TempleIcon,
@@ -9,7 +8,6 @@ import { services } from "@/lib/site-data";
 
 const iconMap = {
   temple: TempleIcon,
-  backpack: BackpackIcon,
   star: StarIcon,
   briefcase: BriefcaseIcon,
 } as const;
@@ -20,9 +18,9 @@ export default function Services() {
       <div className="mx-auto max-w-6xl px-6">
         <SectionHead
           eyebrow="What We Book"
-          title="One fleet, five kinds of journeys."
+          title="One fleet, six kinds of journeys."
         />
-        <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
           {services.map((service) => {
             const Icon = iconMap[service.icon as keyof typeof iconMap];
             return (

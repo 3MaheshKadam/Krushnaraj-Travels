@@ -9,19 +9,19 @@ export default function RoutesSection() {
         <SectionHead
           eyebrow="Where We Run"
           title="Regular routes, plus custom charters anywhere in India."
-          body="Karad sits on NH 48 between Pune and Kolhapur, at the confluence of the Krishna and Koyna rivers — a natural halting point for both intrastate and long-distance travel. Distances below are from Karad Bus Stand by road."
+          body="Karad sits on NH 48 between Pune and Kolhapur, at the confluence of the Krishna and Koyna rivers — a natural halting point for both intrastate and long-distance travel. Distances below are from Karad by road."
         />
 
         <div className="grid gap-6 md:grid-cols-2">
           <RoutePanel
             heading="Within Maharashtra"
             routes={maharashtraRoutes}
-            note="Popular for weekend leisure groups, wedding parties and college excursions — usually run on Koyna or Sahyadri as a day trip."
+            note="Popular for weekend leisure groups, wedding parties and college excursions — usually a day trip in an Innova Crysta, Ertiga or Force Urbania."
           />
           <RoutePanel
             heading="Pilgrimage & Pan-India"
             routes={panIndiaRoutes}
-            note="Full India charter available on request — Wari season and multi-day tours usually run overnight on Krishna or Preeti."
+            note="Full India outstation trips available on request — Wari season and multi-day pilgrimage tours usually run in a Tempo Traveller."
           />
         </div>
       </div>

@@ -1,16 +1,10 @@
 "use client";
 
 import { useState, type ComponentType, type FormEvent, type ReactNode } from "react";
-import { ClockIcon, MapPinIcon, PhoneIcon, WhatsappIcon } from "./icons";
-import { contact } from "@/lib/site-data";
+import { ClockIcon, MailIcon, MapPinIcon, PhoneIcon, WhatsappIcon } from "./icons";
+import { contact, fleet } from "@/lib/site-data";
 
-const busTypes = [
-  "No preference",
-  "AC Sleeper",
-  "AC Seater",
-  "Non-AC Seater",
-  "Non-AC Sleeper",
-];
+const vehicleOptions = ["No preference", ...fleet.map((v) => v.name)];
 
 export default function Enquiry() {
   const [form, setForm] = useState({
@@ -18,7 +12,7 @@ export default function Enquiry() {
     phone: "",
     route: "",
     date: "",
-    type: busTypes[0],
+    vehicle: vehicleOptions[0],
     pax: "",
     msg: "",
   });
@@ -34,12 +28,16 @@ export default function Enquiry() {
     if (form.phone) lines.push(`Phone: ${form.phone}`);
     if (form.route) lines.push(`Route: ${form.route}`);
     if (form.date) lines.push(`Date: ${form.date}`);
-    if (form.type !== "No preference") lines.push(`Bus type: ${form.type}`);
+    if (form.vehicle !== "No preference") lines.push(`Vehicle: ${form.vehicle}`);
     if (form.pax) lines.push(`Passengers: ${form.pax}`);
     if (form.msg) lines.push(`Note: ${form.msg}`);
 
     const text = encodeURIComponent(lines.join("\n"));
-    window.open(`https://wa.me/${contact.phoneWhatsapp}?text=${text}`, "_blank", "noopener");
+    window.open(
+      `https://wa.me/${contact.phonePrimaryWhatsapp}?text=${text}`,
+      "_blank",
+      "noopener"
+    );
   }
 
   return (
@@ -58,8 +56,13 @@ export default function Enquiry() {
           </p>
 
           <div className="mt-6 flex flex-col gap-4">
-            <ContactLine icon={PhoneIcon} title={contact.phoneDisplay} sub="Call or WhatsApp" />
-            <ContactLine icon={MapPinIcon} title={contact.address} sub="Maharashtra" />
+            <ContactLine
+              icon={PhoneIcon}
+              title={`${contact.phonePrimaryDisplay} / ${contact.phoneSecondaryDisplay}`}
+              sub="Call or WhatsApp"
+            />
+            <ContactLine icon={MailIcon} title={contact.email} sub="Email" />
+            <ContactLine icon={MapPinIcon} title={contact.location} sub="Service base" />
             <ContactLine icon={ClockIcon} title={contact.hours} sub="Booking office" />
           </div>
         </div>
@@ -93,7 +96,7 @@ export default function Enquiry() {
               <input
                 value={form.route}
                 onChange={(e) => update("route", e.target.value)}
-                placeholder="e.g. Karad to Shirdi"
+                placeholder="e.g. Karad to Pune Airport"
                 className="input"
               />
             </Field>
@@ -107,14 +110,14 @@ export default function Enquiry() {
             </Field>
           </div>
           <div className="grid gap-4 sm:grid-cols-2">
-            <Field label="Bus type">
+            <Field label="Preferred vehicle">
               <select
-                value={form.type}
-                onChange={(e) => update("type", e.target.value)}
+                value={form.vehicle}
+                onChange={(e) => update("vehicle", e.target.value)}
                 className="input"
               >
-                {busTypes.map((t) => (
-                  <option key={t}>{t}</option>
+                {vehicleOptions.map((v) => (
+                  <option key={v}>{v}</option>
                 ))}
               </select>
             </Field>
@@ -124,7 +127,7 @@ export default function Enquiry() {
                 min={1}
                 value={form.pax}
                 onChange={(e) => update("pax", e.target.value)}
-                placeholder="e.g. 40"
+                placeholder="e.g. 6"
                 className="input"
               />
             </Field>

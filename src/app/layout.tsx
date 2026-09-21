@@ -21,9 +21,9 @@ const spaceMono = Space_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Sangam Travels | Karad Bus Hire — AC & Non-AC Coaches",
+  title: "Krushnaraj Travels | Karad Car & Tempo Traveller Hire",
   description:
-    "Sangam Travels runs four AC and Non-AC coaches out of Karad for pilgrimage yatras, weddings, college tours and long-distance charters across Maharashtra and India.",
+    "Krushnaraj Travels runs a mixed fleet — Innova Crysta, Fortuner, Kia Carens, Ertiga, Swift Dzire, Force Urbania and Tempo Traveller — out of Karad for airport transfers, weddings, corporate travel and pan-India outstation trips.",
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {

@@ -23,7 +23,7 @@ export default function WhyUs() {
     <section id="why" className="py-20">
       <div className="mx-auto max-w-6xl px-6">
         <SectionHead
-          eyebrow="Why Sangam Travels"
+          eyebrow="Why Krushnaraj Travels"
           title="Built for the ghat sections and the highway alike."
         />
         <div className="grid gap-x-8 gap-y-7 sm:grid-cols-2 lg:grid-cols-3">

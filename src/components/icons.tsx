@@ -26,6 +26,27 @@ export function BusIcon(props: IconProps) {
   );
 }
 
+export function CarIcon(props: IconProps) {
+  return (
+    <svg {...base(props)}>
+      <path d="M5 16.5V12l1.6-4.2A2 2 0 0 1 8.5 6.5h7a2 2 0 0 1 1.9 1.3L19 12v4.5" />
+      <path d="M3 16.5h18v2a1 1 0 0 1-1 1h-1.5a1 1 0 0 1-1-1v-1H6.5v1a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1v-2Z" />
+      <line x1="5" y1="12" x2="19" y2="12" />
+      <circle cx="7.5" cy="18.5" r="1.2" />
+      <circle cx="16.5" cy="18.5" r="1.2" />
+    </svg>
+  );
+}
+
+export function MailIcon(props: IconProps) {
+  return (
+    <svg {...base(props)}>
+      <rect x="3" y="5" width="18" height="14" rx="2" />
+      <path d="M3 7l9 6 9-6" />
+    </svg>
+  );
+}
+
 export function PhoneIcon(props: IconProps) {
   return (
     <svg {...base(props)}>

@@ -1,84 +1,135 @@
+export const brand = {
+  name: "Krushnaraj Travels",
+  location: "Karad, Dist. Satara, Maharashtra",
+};
+
 export const contact = {
-  phoneDisplay: "+91 90210 34567",
-  phoneWhatsapp: "919021034567",
-  address: "Karad Bus Stand, Dist. Satara, Maharashtra – 415110",
+  phonesDisplay: ["95034 81238", "90758 91238"],
+  phonePrimaryWhatsapp: "919503481238",
+  phonePrimaryDisplay: "+91 95034 81238",
+  phoneSecondaryDisplay: "+91 90758 91238",
+  phoneSecondaryTel: "+919075891238",
+  email: "krushnarajtravels@gmail.com",
+  location: "Karad, Dist. Satara, Maharashtra",
   hours: "7:00 AM – 10:00 PM, every day",
 };
 
-export type BusType = "AC Sleeper" | "AC Pushback Seater" | "Non-AC Seater" | "Non-AC Sleeper";
+export type VehicleClass = "Sedan" | "MPV" | "SUV" | "Van";
 
-export interface Coach {
+export interface Vehicle {
   name: string;
-  plate: string;
-  type: BusType;
-  ac: boolean;
-  capacity: string;
-  layout: string;
-  note: string;
+  vehicleClass: VehicleClass;
+  ac: "AC" | "AC & Non-AC";
+  seats: string;
   description: string;
-  seatCols: number;
-  berth: boolean;
   amenities: string[];
+  icon: "car" | "van";
+  image: string;
+  imageAlt: string;
 }
 
-export const fleet: Coach[] = [
+export const fleet: Vehicle[] = [
   {
-    name: "Krishna",
-    plate: "MH-11 BH 3301",
-    type: "AC Sleeper",
-    ac: true,
-    capacity: "30 berths",
-    layout: "2+1 layout",
-    note: "Sleeper deck, front to rear",
+    name: "Toyota Innova Crysta",
+    vehicleClass: "MPV",
+    ac: "AC",
+    seats: "6–7 seats",
     description:
-      "The overnight workhorse — curtained berths, reading lights and a quieter cabin for the Hyderabad and Bengaluru runs where passengers board after dinner and step off ready for the day.",
-    seatCols: 3,
-    berth: true,
-    amenities: ["Charging point", "CCTV onboard", "GPS tracked"],
+      "The default pick for airport runs and family outstation trips — a quiet cabin, captain seats on the top trim, and enough boot space for a week's luggage.",
+    amenities: ["Charging point", "Music system", "Driver on call"],
+    icon: "car",
+    image: "/images/innova-crysta-hero.jpg",
+    imageAlt: "White Toyota Innova Crysta parked at the roadside",
   },
   {
-    name: "Koyna",
-    plate: "MH-11 BH 3302",
-    type: "AC Pushback Seater",
-    ac: true,
-    capacity: "45 seats",
-    layout: "2+2 layout",
-    note: "Ideal for day trips & excursions",
+    name: "Toyota Fortuner",
+    vehicleClass: "SUV",
+    ac: "AC",
+    seats: "6–7 seats",
     description:
-      "Wide pushback seats and big windows for day trips — Mahabaleshwar picnics, wedding guest transfers and college excursions where everyone travels together and wants to see the ghats go by.",
-    seatCols: 4,
-    berth: false,
-    amenities: ["Charging point", "Music system", "GPS tracked"],
+      "For guests who want a premium SUV on the highway — wedding pickups, VIP airport transfers, and long ghat drives where ground clearance and comfort both matter.",
+    amenities: ["Charging point", "Music system", "Driver on call"],
+    icon: "car",
+    image: "/images/fortuner.jpg",
+    imageAlt: "White Toyota Fortuner SUV parked in a driveway",
   },
   {
-    name: "Sahyadri",
-    plate: "MH-11 BH 3303",
-    type: "Non-AC Seater",
-    ac: false,
-    capacity: "52 seats",
-    layout: "2+3 layout",
-    note: "Budget-friendly group travel",
+    name: "Kia Carens",
+    vehicleClass: "MPV",
+    ac: "AC",
+    seats: "6–7 seats",
     description:
-      "The Wari and large-group coach — 52 seats at a fare that keeps big groups together on one bus instead of splitting across two, with the same driver and departure time every trip.",
-    seatCols: 5,
-    berth: false,
-    amenities: ["On-time runs", "Sanitised daily", "GPS tracked"],
+      "A newer, well-equipped 3-row option for small family or corporate groups who want captain seats without booking the larger Innova.",
+    amenities: ["Charging point", "Music system", "Driver on call"],
+    icon: "car",
+    image: "/images/kia-carens.jpg",
+    imageAlt: "Grey Kia Carens MPV on a showroom floor",
   },
   {
-    name: "Preeti",
-    plate: "MH-11 BH 3304",
-    type: "Non-AC Sleeper",
-    ac: false,
-    capacity: "30 berths",
-    layout: "2+1 layout",
-    note: "Named for Karad's Preeti Sangam",
+    name: "Maruti Suzuki Ertiga",
+    vehicleClass: "MPV",
+    ac: "AC",
+    seats: "6 seats",
     description:
-      "Named for the Krishna–Koyna confluence at Karad — a budget overnight sleeper with blankets provided, for families and pilgrimage groups who want a berth to lie down in without the AC fare.",
-    seatCols: 3,
-    berth: true,
-    amenities: ["Blankets provided", "GPS tracked", "Sanitised daily"],
+      "A compact 3-row car for small groups doing local sightseeing or a short outstation run, at a lighter fare than the Innova or Carens.",
+    amenities: ["Charging point", "Music system", "Driver on call"],
+    icon: "car",
+    image: "/images/ertiga.jpg",
+    imageAlt: "Dark grey Maruti Suzuki Ertiga MPV in a parking garage",
+  },
+  {
+    name: "Maruti Suzuki Swift Dzire",
+    vehicleClass: "Sedan",
+    ac: "AC",
+    seats: "4 seats",
+    description:
+      "The everyday sedan for solo travellers, couples, or small families — airport drops, local errands, and short point-to-point rides.",
+    amenities: ["Charging point", "Driver on call"],
+    icon: "car",
+    image: "/images/swift-dzire.jpg",
+    imageAlt: "Silver Maruti Suzuki Swift Dzire sedan",
+  },
+  {
+    name: "Force Urbania",
+    vehicleClass: "Van",
+    ac: "AC & Non-AC",
+    seats: "12–17 seats",
+    description:
+      "A mid-size van for office shuttles, mid-sized wedding groups, and college trips that have outgrown a single MPV but don't need a full Tempo Traveller.",
+    amenities: ["Charging point", "Music system", "Driver on call"],
+    icon: "van",
+    image: "/images/force-traveller-highway.jpg",
+    imageAlt: "White Force-class traveller van on a mountain highway",
+  },
+  {
+    name: "Tempo Traveller",
+    vehicleClass: "Van",
+    ac: "AC & Non-AC",
+    seats: "12–26 seats",
+    description:
+      "The large-group workhorse — Wari and pilgrimage groups, wedding parties, and multi-day tours, available in AC or Non-AC depending on the budget.",
+    amenities: ["Charging point", "Music system", "Driver on call"],
+    icon: "van",
+    image: "/images/force-traveller-highway.jpg",
+    imageAlt: "White Force-class traveller van on a mountain highway",
   },
 ];
+
+export const heroSlides = [
+  { vehicle: "Toyota Fortuner" },
+  { vehicle: "Toyota Innova Crysta" },
+  { vehicle: "Kia Carens" },
+  { vehicle: "Maruti Suzuki Ertiga" },
+  { vehicle: "Maruti Suzuki Swift Dzire" },
+  { vehicle: "Force Urbania" },
+].map(({ vehicle }) => {
+  const match = fleet.find((v) => v.name === vehicle)!;
+  return {
+    src: match.image,
+    alt: match.imageAlt,
+    caption: match.name,
+  };
+});
 
 export const maharashtraRoutes = [
   { to: "Pune", km: 115 },
@@ -110,31 +161,41 @@ export const tickerDestinations = [
 
 export const services = [
   {
-    title: "Pilgrimage Yatras",
-    body: "Pandharpur Wari, Tuljapur, Shirdi and multi-day darshan tours with rest stops planned in.",
-    icon: "temple",
+    title: "Airport Transfers",
+    body: "Pickup and drop to Pune, Kolhapur and Belgaum airports in a Dzire, Innova Crysta or Fortuner, timed to your flight.",
+    icon: "briefcase",
   },
   {
-    title: "School & College Trips",
-    body: "Study tours and picnics with attendance-friendly seating and a dedicated point of contact.",
-    icon: "backpack",
-  },
-  {
-    title: "Weddings & Functions",
-    body: "Baraat and guest transport between venues, timed around your muhurat.",
+    title: "Local & Full-Day Hire",
+    body: "A car for the day around Karad, Satara or Mahabaleshwar, billed by the hour or the kilometre.",
     icon: "star",
   },
   {
-    title: "Corporate Outstation",
-    body: "Offsites and site visits with a single point of billing for finance teams.",
+    title: "Outstation One-Way & Round Trip",
+    body: "Point-to-point or round trips anywhere in Maharashtra and pan-India, in a sedan, MPV or SUV.",
+    icon: "temple",
+  },
+  {
+    title: "Weddings & Family Functions",
+    body: "Guest transport and baraat cars, from a single Dzire to a fleet of Innovas and a Tempo Traveller.",
+    icon: "star",
+  },
+  {
+    title: "Corporate & Group Travel",
+    body: "Office shuttles and offsites in the Force Urbania, billed to one point of contact for finance teams.",
     icon: "briefcase",
+  },
+  {
+    title: "Pilgrimage Tours",
+    body: "Pandharpur Wari, Tuljapur and Shirdi in a Tempo Traveller, AC or Non-AC depending on group size and budget.",
+    icon: "temple",
   },
 ];
 
 export const whyUs = [
   {
-    title: "Permitted & insured",
-    body: "All-India Tourist Permit and comprehensive insurance on every coach.",
+    title: "A mixed fleet, not one car",
+    body: "Sedans to a 26-seat Tempo Traveller, so the vehicle matches the group instead of the other way round.",
     icon: "shield",
   },
   {
@@ -143,18 +204,18 @@ export const whyUs = [
     icon: "driver",
   },
   {
-    title: "Departures on time",
-    body: "A fixed departure point at Karad Bus Stand, every time.",
+    title: "Pickup from your doorstep",
+    body: "No fixed stand to reach — the car or van comes to your address at the agreed time.",
     icon: "clock",
   },
   {
     title: "Live location on request",
-    body: "Share the coach's live location with family or your event coordinator.",
+    body: "Share the driver's live location with family or your event coordinator.",
     icon: "gps",
   },
   {
     title: "Cleaned between every trip",
-    body: "Seats, berths and floors wiped down after each run.",
+    body: "Seats and interiors wiped down after each run.",
     icon: "check",
   },
   {
@@ -167,40 +228,40 @@ export const whyUs = [
 export const testimonials = [
   {
     quote:
-      "Sahyadri handled our full Pandharpur Wari group without a single delay, three years running.",
+      "Booked the Tempo Traveller for our Pandharpur Wari group two years running — same driver both times, no last-minute changes.",
     who: "Warkari Group, Pandharpur Yatra",
   },
   {
     quote:
-      "Koyna's pushback seats made the Karad–Mahabaleshwar picnic run easy for 45 students and two buses' worth of luggage.",
-    who: "Educational Tour Committee, Karad",
+      "Innova Crysta for a Pune airport pickup at 5 AM — driver was there early and called ahead when we landed.",
+    who: "Airport Transfer, Karad–Pune",
   },
   {
     quote:
-      "Booked Krishna overnight to Hyderabad for a family function — berths were clean and the driver called ahead on arrival.",
-    who: "Family Function, Satara",
+      "Took the Fortuner for a wedding guest run between Karad and Kolhapur — clean car, and the driver knew the ghat road well.",
+    who: "Wedding Function, Kolhapur",
   },
 ];
 
 export const heroStats = [
-  { value: "04", label: "Coaches on road" },
-  { value: "AC + Non-AC", label: "Sleeper & seater" },
+  { value: "7", label: "Vehicle models" },
+  { value: "Sedan → Van", label: "Every group size" },
   { value: "12+", label: "Regular routes" },
-  { value: "Pan-India", label: "Charter service" },
+  { value: "Pan-India", label: "Outstation service" },
 ];
 
 export const about = {
-  eyebrow: "About Sangam Travels",
-  title: "A four-coach fleet, run out of one bus stand in Karad.",
+  eyebrow: "About Krushnaraj Travels",
+  title: "One call, the right vehicle for the trip.",
   paragraphs: [
-    "Sangam Travels operates out of Karad Bus Stand in Satara district, at the point where the Krishna and Koyna rivers meet — the Preeti Sangam the fleet is named after. Karad also sits on NH 48, the Pune–Bengaluru highway, which is why a four-coach operation here can reasonably run both a Monday-morning college trip to Mahabaleshwar and a Friday-night charter to Hyderabad with the same buses.",
-    "Two coaches run AC — a sleeper and a pushback seater — and two run Non-AC, a large seater and a sleeper, so a booking can be matched to the group's budget rather than whatever happens to be free that week. Every coach carries an All-India Tourist Permit and an MH-11 Satara-RTO registration, and the same driver-conductor pair generally stays with a coach across a season so regular groups end up recognising them.",
+    "Krushnaraj Travels operates out of Karad in Satara district, on NH 48 between Pune and Bengaluru — a fleet built around the idea that a solo airport run and a 40-person Wari group shouldn't be booked through the same car. The lineup runs from a Swift Dzire sedan up to a 26-seat Tempo Traveller, with SUVs and MPVs in between, so the vehicle is sized to the trip rather than whatever happens to be free.",
+    "Sedans, MPVs and SUVs run AC only; the Force Urbania and Tempo Traveller are available in both AC and Non-AC, so larger groups can choose based on budget. Every trip — local, outstation, or pan-India — is booked directly over a call or WhatsApp to the numbers below, with the driver arranged to pick up from your address rather than a fixed stand.",
   ],
   facts: [
-    { label: "Base", value: "Karad Bus Stand, Dist. Satara" },
+    { label: "Base", value: "Karad, Dist. Satara" },
     { label: "Highway", value: "NH 48, Pune–Bengaluru corridor" },
-    { label: "Coverage", value: "Maharashtra + pan-India charter" },
-    { label: "Permit", value: "All-India Tourist Permit, insured" },
+    { label: "Fleet range", value: "Swift Dzire to Tempo Traveller" },
+    { label: "Coverage", value: "Maharashtra + pan-India outstation" },
   ],
 };
 
@@ -208,34 +269,38 @@ export const bookingSteps = [
   {
     step: "01",
     title: "Send your trip details",
-    body: "Route, date, passenger count and preferred bus type — over WhatsApp or a call to the Karad office.",
+    body: "Route, date, passenger count and preferred vehicle — over WhatsApp or a call.",
   },
   {
     step: "02",
-    title: "Confirm the coach and fare",
-    body: "We check which of the four coaches is free on your date and quote a fare for that bus type and distance.",
+    title: "Confirm the vehicle and fare",
+    body: "We check which vehicle is free on your date and quote a fare for that vehicle and distance.",
   },
   {
     step: "03",
-    title: "Board at the fixed point",
-    body: "Boarding is from Karad Bus Stand (or a pickup point agreed in advance for group charters) at the confirmed time.",
+    title: "Pickup from your address",
+    body: "The car or van comes to your doorstep at the confirmed time — no stand or office visit needed.",
   },
 ];
 
 export const gallery = [
   {
-    src: "/images/ac-volvo-highway.jpg",
-    alt: "AC Volvo multi-axle coach on a Maharashtra street",
-    caption: "AC Volvo-class multi-axle coach — the comfort tier Krishna and Koyna run to.",
+    src: "/images/innova-crysta-side.jpg",
+    alt: "White Toyota Innova Crysta MPV parked at the roadside",
+    caption: "Toyota Innova Crysta — the standard AC MPV for family and airport trips.",
+    width: 1600,
+    height: 900,
   },
   {
-    src: "/images/ac-coach-depot.jpg",
-    alt: "AC Scania coach parked at a Maharashtra bus depot",
-    caption: "AC Scania-class coach at a Maharashtra depot — wide reclining seats, tinted glass.",
+    src: "/images/force-traveller-highway.jpg",
+    alt: "White Force Traveller van on a mountain highway",
+    caption: "Force Traveller-class van — the AC/Non-AC tier Force Urbania and Tempo Traveller run to.",
+    width: 1600,
+    height: 1200,
   },
 ];
 
 export const galleryCredit = {
-  text: "Reference photography of Maharashtra AC coaches, not Sangam Travels' own vehicles — swap for real fleet photos before publishing. Photos: Rsrikanth05, Wikimedia Commons, CC BY-SA 4.0.",
-  href: "https://commons.wikimedia.org/wiki/Category:MSRTC",
+  text: "Reference photography of the vehicle classes offered — including the photos on the homepage slider and revealed on hover in the Fleet section above — not Krushnaraj Travels' own vehicles. Swap for real fleet photos before publishing. Photos: Premnath Kudva, Yann Forget, Ganesh Mohan T, Captainmorlypogi1959, Akashpbrahmavar and Biswarup Ganguly, via Wikimedia Commons, CC BY-SA / CC BY / CC0.",
+  href: "https://commons.wikimedia.org/wiki/Category:Toyota_Innova_Crysta",
 };

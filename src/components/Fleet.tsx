@@ -1,25 +1,12 @@
-import type { ComponentType } from "react";
-import {
-  BlanketIcon,
-  CameraIcon,
-  CheckIcon,
-  FanIcon,
-  GpsIcon,
-  MusicIcon,
-  SnowflakeIcon,
-  ZapIcon,
-} from "./icons";
+import Image from "next/image";
+import { BusIcon, CarIcon, CheckIcon, MusicIcon, PhoneIcon, ZapIcon } from "./icons";
 import SectionHead from "./SectionHead";
-import { fleet, type Coach } from "@/lib/site-data";
+import { fleet, type Vehicle } from "@/lib/site-data";
 
-const amenityIcon: Record<string, ComponentType<{ className?: string }>> = {
+const amenityIcon: Record<string, typeof CheckIcon> = {
   "Charging point": ZapIcon,
-  "CCTV onboard": CameraIcon,
-  "GPS tracked": GpsIcon,
   "Music system": MusicIcon,
-  "On-time runs": CheckIcon,
-  "Sanitised daily": CheckIcon,
-  "Blankets provided": BlanketIcon,
+  "Driver on call": PhoneIcon,
 };
 
 export default function Fleet() {
@@ -28,13 +15,13 @@ export default function Fleet() {
       <div className="mx-auto max-w-6xl px-6">
         <SectionHead
           eyebrow="The Fleet"
-          title="Four coaches, two ways to travel."
-          body="Every coach carries an MH-11 Satara-RTO plate and runs an All-India Tourist Permit, so the same bus that does a Karad–Pune school trip on Monday can run Karad–Bengaluru on Friday."
+          title="Seven vehicles, sized to the trip."
+          body="Sedans, MPVs and SUVs run AC only. The Force Urbania and Tempo Traveller are available in both AC and Non-AC, for larger groups working to a budget. Hover a card to see the vehicle."
         />
 
-        <div className="grid gap-6 md:grid-cols-2">
-          {fleet.map((coach) => (
-            <CoachCard key={coach.name} coach={coach} />
+        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          {fleet.map((vehicle) => (
+            <VehicleCard key={vehicle.name} vehicle={vehicle} />
           ))}
         </div>
       </div>
@@ -42,96 +29,64 @@ export default function Fleet() {
   );
 }
 
-function CoachCard({ coach }: { coach: Coach }) {
+function VehicleCard({ vehicle }: { vehicle: Vehicle }) {
+  const Icon = vehicle.icon === "van" ? BusIcon : CarIcon;
+
   return (
-    <article className="flex flex-col gap-4 rounded-2xl border border-line bg-background p-6 shadow-[0_18px_40px_-26px_rgba(19,32,37,0.5)]">
-      <div className="flex items-start justify-between gap-3">
-        <div>
-          <div className="font-display text-2xl font-bold text-primary-strong">
-            {coach.name}
-          </div>
+    <article className="group relative overflow-hidden rounded-2xl border border-line shadow-[0_18px_40px_-26px_rgba(19,32,37,0.5)]">
+      <Image
+        src={vehicle.image}
+        alt={vehicle.imageAlt}
+        fill
+        sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
+        className="absolute inset-0 scale-105 object-cover opacity-0 transition-all duration-500 ease-out group-hover:scale-100 group-hover:opacity-100"
+      />
+      <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/55 to-black/25 opacity-0 transition-opacity duration-500 ease-out group-hover:opacity-100" />
+
+      <div className="relative flex h-full flex-col gap-4 bg-background p-6 transition-colors duration-500 ease-out group-hover:bg-transparent">
+        <div className="flex items-start justify-between gap-3">
+          <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-primary/10 text-primary-strong transition-colors duration-500 group-hover:bg-white/15 group-hover:text-white">
+            <Icon className="h-5 w-5" />
+          </span>
           <span
-            className={`mt-1 inline-flex items-center gap-1.5 rounded-full px-2.5 py-1 text-xs font-bold ${
-              coach.ac
+            className={`rounded-full px-2.5 py-1 text-xs font-bold transition-colors duration-500 group-hover:bg-white group-hover:text-ink ${
+              vehicle.ac === "AC"
                 ? "bg-secondary/15 text-secondary"
                 : "bg-accent/15 text-accent-strong"
             }`}
           >
-            {coach.ac ? (
-              <SnowflakeIcon className="h-3.5 w-3.5" />
-            ) : (
-              <FanIcon className="h-3.5 w-3.5" />
-            )}
-            {coach.type}
+            {vehicle.ac}
           </span>
         </div>
-        <span className="whitespace-nowrap rounded border-2 border-ink bg-white px-2 py-0.5 font-mono text-xs font-bold text-ink">
-          {coach.plate}
-        </span>
-      </div>
 
-      <div className="flex flex-wrap gap-x-4 gap-y-1 text-sm text-ink-soft">
-        <span>
-          <strong className="text-ink">{coach.capacity.split(" ")[0]}</strong>{" "}
-          {coach.capacity.split(" ").slice(1).join(" ")}
-        </span>
-        <span>{coach.layout}</span>
-      </div>
+        <div>
+          <h3 className="font-display text-xl font-bold text-primary-strong transition-colors duration-500 group-hover:text-white">
+            {vehicle.name}
+          </h3>
+          <p className="mt-0.5 text-sm text-ink-soft transition-colors duration-500 group-hover:text-white/75">
+            {vehicle.vehicleClass} · {vehicle.seats}
+          </p>
+        </div>
 
-      <p className="text-sm text-ink-soft">{coach.description}</p>
+        <p className="text-sm text-ink-soft transition-colors duration-500 group-hover:text-white/85">
+          {vehicle.description}
+        </p>
 
-      <SeatMap cols={coach.seatCols} berth={coach.berth} note={coach.note} />
-
-      <div className="flex flex-wrap gap-2">
-        {coach.amenities.map((amenity) => {
-          const Icon = amenityIcon[amenity] ?? CheckIcon;
-          return (
-            <span
-              key={amenity}
-              className="inline-flex items-center gap-1.5 rounded-full border border-line bg-surface-2 px-2.5 py-1 text-xs text-ink-soft"
-            >
-              <Icon className="h-3.5 w-3.5 text-primary" />
-              {amenity}
-            </span>
-          );
-        })}
+        <div className="mt-auto flex flex-wrap gap-2 pt-1">
+          {vehicle.amenities.map((amenity) => {
+            const AmenityIcon = amenityIcon[amenity] ?? CheckIcon;
+            return (
+              <span
+                key={amenity}
+                className="inline-flex items-center gap-1.5 rounded-full border border-line bg-surface-2 px-2.5 py-1 text-xs text-ink-soft transition-colors duration-500 group-hover:border-white/30 group-hover:bg-white/10 group-hover:text-white"
+              >
+                <AmenityIcon className="h-3.5 w-3.5 text-primary transition-colors duration-500 group-hover:text-white" />
+                {amenity}
+              </span>
+            );
+          })}
+        </div>
       </div>
     </article>
-  );
-}
-
-function SeatMap({
-  cols,
-  berth,
-  note,
-}: {
-  cols: number;
-  berth: boolean;
-  note: string;
-}) {
-  const rows = 3;
-  const left = 2;
-  const right = cols - left;
-  const seatClass = `h-3.5 flex-1 bg-primary/40 ${
-    berth ? "rounded-t-md rounded-b-sm" : "rounded"
-  }`;
-
-  return (
-    <div className="rounded-xl bg-surface-2 p-3">
-      <div className="flex flex-col gap-1.5">
-        {Array.from({ length: rows }).map((_, r) => (
-          <div key={r} className="flex items-center gap-1.5">
-            {Array.from({ length: left }).map((_, c) => (
-              <div key={`l${c}`} className={seatClass} />
-            ))}
-            <div className="w-3 shrink-0" aria-hidden />
-            {Array.from({ length: right }).map((_, c) => (
-              <div key={`r${c}`} className={seatClass} />
-            ))}
-          </div>
-        ))}
-      </div>
-      <p className="mt-2 text-right text-[0.7rem] text-ink-soft">{note}</p>
-    </div>
   );
 }
